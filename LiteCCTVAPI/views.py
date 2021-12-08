@@ -21,12 +21,17 @@ class TokenViewSet(viewsets.ModelViewSet):
     serializer_class = TokenSerializer
 
 def ViewImage(request):
-    images = Image.objects.all().order_by('filename')
-    template = loader.get_template('./images.html')
-    context = {
-        'images': images,
-    }
-    return HttpResponse(template.render(context, request))
+
+    if request.method == 'GET':
+        return HttpResponse("Please use POST method")
+    elif request.method == 'POST':
+        images = Image.objects.filter(token=request.POST['token']).order_by('filename')
+        template = loader.get_template('./images.html')
+        context = {
+            'images': images,
+        }
+        return HttpResponse(template.render(context, request))
+    
 
 def CheckToken(request):
     x = ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for _ in range(6))
@@ -38,3 +43,6 @@ def CheckToken(request):
         tokens = Token.objects.filter(token=x).exists()
     token_instance = Token.objects.create(token=x)
     return HttpResponse(x)
+
+def index(request):
+    return render(request,'./index.html', {})

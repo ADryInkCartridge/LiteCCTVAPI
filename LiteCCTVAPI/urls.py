@@ -3,7 +3,7 @@ from django.urls import include, path
 from rest_framework import routers
 from . import views
 
-router = routers.DefaultRouter()
+router = routers.SimpleRouter()
 router.register(r'image', views.ImageViewSet)
 router.register(r'token', views.TokenViewSet)
 
@@ -12,6 +12,7 @@ router.register(r'token', views.TokenViewSet)
 urlpatterns = [
     path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    path('my-images/', views.ViewImage),
+    path('', views.index),
+    path('my-images/', views.ViewImage, name='my-images'),
     path('tokenCheck/', views.CheckToken)
 ]
