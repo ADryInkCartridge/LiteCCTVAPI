@@ -27,6 +27,16 @@
                     <p>Token: {{ i.token }}</p>
                 </div>
             </div>
+            <div>
+                Detected Faces:
+                {% if i.faceimage_set.count == 0 %}
+                    No face detected.
+                {% else %}
+                    {% for face_image in i.faceimage_set.all %}
+                    <img src="data:image/jpeg;base64,{{ face_image.image_data }}">
+                    {% endfor %}
+                {% endif %}
+            </div>
         </div>
         {% endfor %}
     {% else %}
