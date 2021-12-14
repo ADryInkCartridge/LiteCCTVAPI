@@ -14,8 +14,8 @@ class ImageSerializer(serializers.HyperlinkedModelSerializer):
     def create(self, validated_data):
         image = Image.objects.create(**validated_data)
         detected_faces = getFacesFromImage(validated_data['imagedata'])
-        for b64_string in detected_faces:
-            face_image = FaceImage.objects.create(image_data=b64_string, image_id=image)
+        for d in detected_faces:
+            face_image = FaceImage.objects.create(image_data=d[0], image_emotion=d[1], image_id=image)
         return image
 
 class TokenSerializer(serializers.HyperlinkedModelSerializer):
