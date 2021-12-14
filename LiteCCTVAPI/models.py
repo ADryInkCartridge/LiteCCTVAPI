@@ -18,7 +18,7 @@ class Token(models.Model):
 class FaceImage(models.Model):
     image_data = models.TextField()
     image_id = models.ForeignKey(Image, on_delete=models.CASCADE)
-
+    image_emotion = models.CharField(max_length=64, default='none')
     def __str__(self):
         return self.image_data
     

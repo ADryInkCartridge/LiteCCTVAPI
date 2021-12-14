@@ -33,7 +33,7 @@
                     No face detected.
                 {% else %}
                     {% for face_image in i.faceimage_set.all %}
-                    <img src="data:image/jpeg;base64,{{ face_image.image_data }}">
+                    <img src="data:image/jpeg;base64,{{ face_image.image_data }}"> - Emotion: {{ face_image.image_emotion }}
                     {% endfor %}
                 {% endif %}
             </div>
