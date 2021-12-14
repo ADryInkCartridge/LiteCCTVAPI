@@ -12,7 +12,7 @@ def getFacesFromImage(b64_string):
     detected_faces = []
     
     # Model file path
-    model_file_path = os.path.dirname(__file__) + '\\EmotionDetectionModel.h5'
+    model_file_path = os.path.dirname(__file__) + '/EmotionDetectionModel.h5'
 
     classifier = load_model(model_file_path)
     class_labels=['Angry','Happy','Neutral','Sad','Surprise']
