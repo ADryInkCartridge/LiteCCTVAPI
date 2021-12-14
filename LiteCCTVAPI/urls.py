@@ -12,7 +12,7 @@ router.register(r'token', views.TokenViewSet)
 urlpatterns = [
     path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    path('', views.index),
+    path('', views.index, name='home'),
     path('my-images/', views.ViewImage, name='my-images'),
     path('tokenCheck/', views.CheckToken)
 ]
