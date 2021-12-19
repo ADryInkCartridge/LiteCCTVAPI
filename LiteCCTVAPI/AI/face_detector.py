@@ -31,7 +31,6 @@ def getFacesFromImage(b64_string):
 
     # Draw rectangle around the faces and crop the faces
     for (x, y, w, h) in faces:
-        cv2.rectangle(img, (x, y), (x+w, y+h), (0, 0, 255), 2)
         faces = img[y:y + h, x:x + w]
         roi_gray=gray[y:y+h,x:x+w]
         roi_gray=cv2.resize(roi_gray,(48,48),interpolation=cv2.INTER_AREA)
